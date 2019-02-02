@@ -1,20 +1,20 @@
 import React from 'react';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 
 const CustomerSearchScreen = () => {
   return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <div className="form-group col-12 mt-2">
-            <label htmlFor="customer-search">Customer search</label>
-            <input type="text"
-                   id="cutomer-search"
-                   name="customer-search"
-                   className="form-control"/>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <Form className="mt-2">
+            <Form.Group controlId="customer-search">
+              <Form.Label>Customer Search</Form.Label>
+              <Form.Control/>
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
