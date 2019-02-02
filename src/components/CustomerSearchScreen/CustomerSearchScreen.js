@@ -1,7 +1,10 @@
 import React from 'react';
-import { Container, Row, Col, Form, Tabs, Tab, Table } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Container, Row, Col, Form, Tabs, Tab } from 'react-bootstrap';
+import CustomerListTable from './CustomerListTable/CustomerListTable';
 
-const CustomerSearchScreen = () => {
+const CustomerSearchScreen = props => {
+  const searchResults = props.customer.customerSearchResults;
   return (
     <Container>
       <Row>
@@ -22,47 +25,12 @@ const CustomerSearchScreen = () => {
         <Col>
           <Tabs defaultActiveKey="recent" className="mt-5">
             <Tab eventKey="recent" title="Recent Customers">
-              <Table striped bordered hover className="mt-2">
-                <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Company Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>CUS00000368</td>
-                  <td>Ridgeway Hospital Networking</td>
-                  <td>GVandever@thinkebiz.com</td>
-                  <td>(405) 518-0804</td>
-                </tr>
-                <tr>
-                  <td>CUS00000469</td>
-                  <td>DataTek Software</td>
-                  <td>mdrobbins@datateksoftware.com</td>
-                  <td>(858) 774-2746</td>
-                </tr>
-                </tbody>
-              </Table>
+              <CustomerListTable customers={searchResults}
+                                 emptyMessage="No records found"/>
             </Tab>
             <Tab eventKey="results" title="Search Results">
-              <Table striped bordered hover className="mt-2">
-                <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Company Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td colSpan="4"><div className="ml-auto mr-auto" style={{width: 400}}>No Search Results - Please enter search criteria above</div></td>
-                </tr>
-                </tbody>
-              </Table>
+              <CustomerListTable customers={[]}
+                                 message='No Search Results - Enter search criteria above'/>
             </Tab>
           </Tabs>
         </Col>
@@ -71,4 +39,8 @@ const CustomerSearchScreen = () => {
   );
 };
 
-export default CustomerSearchScreen;
+const mapStateToProps = state => ({
+  customer: state.customer
+});
+
+export default connect(mapStateToProps)(CustomerSearchScreen);

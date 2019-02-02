@@ -1,6 +1,8 @@
 export default {
-  customer: {},
-  customers: [],
+  customer: {
+    recentCustomer: [],
+    customerSearchResults: [],
+  },
   order: {},
   orders: [],
   ajax: {
