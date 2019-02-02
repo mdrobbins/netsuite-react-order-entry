@@ -6,7 +6,7 @@ const CustomerListTableBodyEmpty = (props) => {
     <tbody>
     <tr>
       <td colSpan="4">
-        <div className="ml-auto mr-auto text-center" style={{width: 400}}>{props.message}</div>
+        <div className="ml-auto mr-auto text-center" style={{width: '100%'}}>{props.message}</div>
       </td>
     </tr>
     </tbody>
@@ -15,7 +15,7 @@ const CustomerListTableBodyEmpty = (props) => {
 
 CustomerListTableBodyEmpty.defaultProps = {
   message: 'No records to show'
-}
+};
 
 CustomerListTableBodyEmpty.propTypes = {
   message: PropTypes.string
