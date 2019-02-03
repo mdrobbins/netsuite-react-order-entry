@@ -6,11 +6,8 @@ import './index.css';
 import App from './App';
 import configureStore from './store/configureStore';
 import * as serviceWorker from './serviceWorker';
-import * as customerActions from './actions/customerActions';
 
 const store = configureStore();
-// noinspection JSUnresolvedFunction
-store.dispatch(customerActions.searchCustomers('us'));
 
 ReactDOM.render(
   <Provider store={store}>

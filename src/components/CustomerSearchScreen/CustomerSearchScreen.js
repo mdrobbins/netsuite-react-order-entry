@@ -8,21 +8,27 @@ import * as actions from '../../actions/customerActions';
 const CustomerSearchScreen = props => {
   const onSearchTextChange = e => props.dispatch(actions.searchTextChanged(e.target.value));
 
+  const onSubmitForm = e => {
+    e.preventDefault();
+    props.dispatch(actions.searchCustomers(props.customer.searchText));
+  };
+
   const searchResults = props.customer.customerSearchResults;
   return (
     <Container>
       <Row>
         <Col>
-          <Form className="mt-4">
+          <Form className="mt-4" onSubmit={onSubmitForm}>
               <Row>
                 <Col md={{ offset: 2, span: 7}}>
                   <Form.Group controlId="customer-search" className="mt-1">
                     <Form.Label><h4>Customer Search</h4></Form.Label>
-                    <Form.Control value={props.customer.searchText} onChange={onSearchTextChange}/>
+                    <Form.Control value={props.customer.searchText}
+                                  onChange={onSearchTextChange}/>
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Button variant="primary" className="mt-5">Search</Button>
+                  <Button variant="primary" className="mt-5" onClick={onSubmitForm}>Search</Button>
                 </Col>
               </Row>
           </Form>
@@ -32,11 +38,11 @@ const CustomerSearchScreen = props => {
         <Col>
           <Tabs defaultActiveKey="results" className="mt-5">
             <Tab eventKey="results" title="Search Results">
-              <CustomerListTable customers={[]}
+              <CustomerListTable customers={searchResults}
                                  message='No Search Results'/>
             </Tab>
             <Tab eventKey="recent" title="Recent Customers">
-              <CustomerListTable customers={searchResults}
+              <CustomerListTable customers={[]}
                                  emptyMessage="No records found"/>
             </Tab>
           </Tabs>

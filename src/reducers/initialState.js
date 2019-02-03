@@ -1,6 +1,6 @@
 export default {
   customer: {
-    searchText: 'Test',
+    searchText: '',
     recentCustomers: [],
     customerSearchResults: [],
   },

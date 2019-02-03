@@ -6,6 +6,7 @@ const customerReducer = (state = initalState.customer, action) => {
     case actions.SEARCH_CUSTOMERS_SUCCESS:
       return {
         ...state,
+        searchText: '',
         customerSearchResults: action.customers
       };
 
