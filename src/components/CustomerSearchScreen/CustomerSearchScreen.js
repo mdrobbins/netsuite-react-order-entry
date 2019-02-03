@@ -6,10 +6,12 @@ import Button from "react-bootstrap/Button";
 import * as actions from '../../actions/customerActions';
 
 class CustomerSearchScreen extends Component {
+  // noinspection JSUnusedGlobalSymbols
   componentDidMount = () => {
     this.searchField.focus();
   };
 
+  // noinspection JSUnusedGlobalSymbols
   componentDidUpdate = () => {
     this.searchField.focus();
   };
