@@ -17,21 +17,32 @@ const customerReducer = (state = initalState.customer, action) => {
         searchText: action.searchText
       };
 
-    case actions.CUSTOMER_EDIT_BUTTON_CLICKED:
+    case actions.CUSTOMER_EDIT_BUTTON_CLICKED: {
       const clickedCustomer = state.customerSearchResults.find(c => c.id === action.customerId);
       const recentCustomers = state.recentCustomers.filter(c => c.id !== action.customerId);
       recentCustomers.unshift(clickedCustomer);
+      localStorage.setItem('recentCustomers', JSON.stringify(recentCustomers));
 
       return {
         ...state,
         recentCustomers
       };
+    }
 
     case actions.CUSTOMER_SEARCH_TAB_CHANGED:
       return {
         ...state,
         activeTab: action.activeTab
       };
+
+    case actions.GET_RECENT_CUSTOMERS: {
+      let recentCustomers = localStorage.getItem('recentCustomers');
+      if (!recentCustomers) return state;
+      return {
+        ...state,
+        recentCustomers: JSON.parse(recentCustomers)
+      };
+    }
 
     default:
       return state;
