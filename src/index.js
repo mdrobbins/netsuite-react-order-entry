@@ -10,7 +10,7 @@ import * as customerActions from './actions/customerActions';
 
 const store = configureStore();
 // noinspection JSUnresolvedFunction
-store.dispatch(customerActions.searchCustomers('test string'));
+store.dispatch(customerActions.searchCustomers('us'));
 
 ReactDOM.render(
   <Provider store={store}>
