@@ -9,6 +9,12 @@ const customerReducer = (state = initalState.customer, action) => {
         customerSearchResults: action.customers
       };
 
+    case actions.SEARCH_TEXT_CHANGED:
+      return {
+        ...state,
+        searchText: action.searchText
+      };
+
     default:
       return state;
   }

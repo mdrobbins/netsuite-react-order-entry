@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import { Container, Row, Col, Form, Tabs, Tab } from 'react-bootstrap';
 import CustomerListTable from './CustomerListTable/CustomerListTable';
 import Button from "react-bootstrap/Button";
+import * as actions from '../../actions/customerActions';
 
 const CustomerSearchScreen = props => {
+  const onSearchTextChange = e => props.dispatch(actions.searchTextChanged(e.target.value));
+
   const searchResults = props.customer.customerSearchResults;
   return (
     <Container>
@@ -15,7 +18,7 @@ const CustomerSearchScreen = props => {
                 <Col md={{ offset: 2, span: 7}}>
                   <Form.Group controlId="customer-search" className="mt-1">
                     <Form.Label><h4>Customer Search</h4></Form.Label>
-                    <Form.Control/>
+                    <Form.Control value={props.customer.searchText} onChange={onSearchTextChange}/>
                   </Form.Group>
                 </Col>
                 <Col>
