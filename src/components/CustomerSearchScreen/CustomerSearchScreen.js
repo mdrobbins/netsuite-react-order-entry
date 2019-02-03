@@ -16,11 +16,30 @@ class CustomerSearchScreen extends Component {
     this.searchField.focus();
   };
 
+  state = {
+    searchAttempted: false,
+    searchValid: true
+  };
+
   render() {
-    const onSearchTextChange = e => this.props.dispatch(actions.searchTextChanged(e.target.value));
+    const onSearchTextChange = e => {
+      const searchText = e.target.value;
+      if (this.state.searchAttempted) {
+        this.setState({ searchValid: searchText.length >= 3 });
+      }
+      if (searchText.length >=3) {
+        this.setState({ searchAttempted: false, searchValid: true });
+      }
+      this.props.dispatch(actions.searchTextChanged(e.target.value));
+    };
 
     const onSubmitForm = e => {
       e.preventDefault();
+      if (this.props.customer.searchText.length < 3) {
+        this.setState({ searchAttempted: true, searchValid: false });
+        return;
+      }
+      this.setState({ searchAttempted: false, searchValid: true });
       this.props.dispatch(actions.searchCustomers(this.props.customer.searchText));
     };
 
@@ -38,10 +57,11 @@ class CustomerSearchScreen extends Component {
                     <Form.Control value={this.props.customer.searchText}
                                   onChange={onSearchTextChange}
                                   ref={input => this.searchField = input}/>
+                    { !this.state.searchValid ? <span>Enter at least 3 characters before searching</span> : null }
                   </Form.Group>
                 </Col>
                 <Col>
-                  <Button variant="primary" className="mt-5" onClick={onSubmitForm}>Search</Button>
+                  <Button variant="primary" className="mt-5" onClick={onSubmitForm} disabled={this.props.customer.searchText.length < 3}>Search</Button>
                 </Col>
               </Row>
             </Form>
