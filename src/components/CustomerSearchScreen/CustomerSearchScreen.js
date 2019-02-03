@@ -44,6 +44,7 @@ class CustomerSearchScreen extends Component {
     };
 
     const onTabSelect = key => this.props.dispatch(actions.searchTabChanged(key));
+    const onClearButtonClick = () => this.props.dispatch(actions.clearRecentCustomers());
 
     return (
       <Container>
@@ -80,7 +81,9 @@ class CustomerSearchScreen extends Component {
               <Tab eventKey="recent"
                    title="Recent Customers">
                 <CustomerListTable customers={this.props.customer.recentCustomers}
-                                   emptyMessage="No records found"/>
+                                   emptyMessage="No recent customers"
+                                   showClearButton={true}
+                                   onClearClick={onClearButtonClick}/>
               </Tab>
             </Tabs>
           </Col>

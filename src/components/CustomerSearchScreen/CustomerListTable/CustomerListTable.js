@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import { Table } from "react-bootstrap";
 import CustomerListTableBody from "./CustomerListTableBody";
 import CustomerListTableBodyEmpty from "./CustomerListTableBodyEmpty";
+import Button from "react-bootstrap/Button";
 
 const CustomerListTable = props => {
   return (
     <Table striped bordered hover className="mt-2">
       <thead>
       <tr>
-        <th/>
+        <th>{props.showClearButton && <Button size="sm" color="error" onClick={props.onClearClick}>Clear</Button>}</th>
         <th>#</th>
         <th>Company Name</th>
         <th>Email</th>
@@ -26,6 +27,8 @@ const CustomerListTable = props => {
 CustomerListTable.defaultProps = {
   customers: [],
   message: 'No Records Found',
+  showClearButton: false,
+  onClearClick: f => f
 };
 
 CustomerListTable.propTypes = {
@@ -38,7 +41,9 @@ CustomerListTable.propTypes = {
       phone: PropTypes.string.isRequired
     })
   ),
-  message: PropTypes.string
+  message: PropTypes.string,
+  showClearButton: PropTypes.bool,
+  onClearClick: PropTypes.func
 };
 
 export default CustomerListTable;

@@ -6,6 +6,7 @@ export const searchTextChanged = searchText => ({ type: actions.SEARCH_TEXT_CHAN
 export const editButtonClicked = customerId => ({ type: actions.CUSTOMER_EDIT_BUTTON_CLICKED, customerId });
 export const searchTabChanged = activeTab => ({ type: actions.CUSTOMER_SEARCH_TAB_CHANGED, activeTab });
 export const getRecentCustomers = () => ({ type: actions.GET_RECENT_CUSTOMERS });
+export const clearRecentCustomers = () => ({ type: actions.CLEAR_RECENT_CUSTOMERS });
 
 export const searchCustomers = searchText =>
   ajax.dispatchAsync('searching for customers', 'searchCustomers', searchCustomersSuccess, searchText);

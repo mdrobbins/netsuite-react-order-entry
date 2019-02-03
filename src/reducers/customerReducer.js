@@ -44,6 +44,14 @@ const customerReducer = (state = initalState.customer, action) => {
       };
     }
 
+    case actions.CLEAR_RECENT_CUSTOMERS: {
+      localStorage.removeItem('recentCustomers');
+      return {
+        ...state,
+        recentCustomers: []
+      };
+    }
+
     default:
       return state;
   }
