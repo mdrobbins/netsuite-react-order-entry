@@ -13,6 +13,7 @@ const CustomerListTableBody = props => {
       <tr key={customer.id}>
         <td>
           <Button size="sm"
+                  variant="outline-secondary"
                   onClick={() => onEditButtonClicked(customer.id)}>
             Edit
           </Button>
