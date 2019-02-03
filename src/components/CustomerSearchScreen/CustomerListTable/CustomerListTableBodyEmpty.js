@@ -5,7 +5,7 @@ const CustomerListTableBodyEmpty = (props) => {
   return (
     <tbody>
     <tr>
-      <td colSpan="4">
+      <td colSpan="5">
         <div className="ml-auto mr-auto text-center" style={{width: '100%'}}>{props.message}</div>
       </td>
     </tr>

@@ -3,6 +3,7 @@ export default {
     searchText: '',
     recentCustomers: [],
     customerSearchResults: [],
+    activeTab: 'results'
   },
   order: {},
   orders: [],

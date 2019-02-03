@@ -13,7 +13,8 @@ const CustomerSearchScreen = props => {
     props.dispatch(actions.searchCustomers(props.customer.searchText));
   };
 
-  const searchResults = props.customer.customerSearchResults;
+  const onTabSelect = key => props.dispatch(actions.searchTabChanged(key));
+
   return (
     <Container>
       <Row>
@@ -36,13 +37,17 @@ const CustomerSearchScreen = props => {
       </Row>
       <Row>
         <Col>
-          <Tabs defaultActiveKey="results" className="mt-5">
-            <Tab eventKey="results" title="Search Results">
-              <CustomerListTable customers={searchResults}
+          <Tabs className="mt-5"
+                activeKey={props.customer.activeTab}
+                onSelect={key => onTabSelect(key)}>
+            <Tab eventKey="results"
+                 title="Search Results">
+              <CustomerListTable customers={props.customer.customerSearchResults}
                                  message='No Search Results'/>
             </Tab>
-            <Tab eventKey="recent" title="Recent Customers">
-              <CustomerListTable customers={[]}
+            <Tab eventKey="recent"
+                 title="Recent Customers">
+              <CustomerListTable customers={props.customer.recentCustomers}
                                  emptyMessage="No records found"/>
             </Tab>
           </Tabs>

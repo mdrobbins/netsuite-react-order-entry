@@ -1,11 +1,22 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import Button from "react-bootstrap/Button";
+import * as actions from '../../../actions/customerActions';
 
 const CustomerListTableBody = props => {
+  const onEditButtonClicked = customerId => props.dispatch(actions.editButtonClicked(customerId));
+
   return (
     <tbody>
     {props.customers.map(customer =>
       <tr key={customer.id}>
+        <td>
+          <Button size="sm"
+                  onClick={() => onEditButtonClicked(customer.id)}>
+            Edit
+          </Button>
+        </td>
         <td>{customer.number}</td>
         <td>{customer.companyName}</td>
         <td>{customer.email}</td>
@@ -32,4 +43,4 @@ CustomerListTableBody.propTypes = {
   )
 };
 
-export default CustomerListTableBody;
+export default connect()(CustomerListTableBody);

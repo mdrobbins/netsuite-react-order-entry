@@ -9,6 +9,7 @@ const CustomerListTable = props => {
     <Table striped bordered hover className="mt-2">
       <thead>
       <tr>
+        <th/>
         <th>#</th>
         <th>Company Name</th>
         <th>Email</th>

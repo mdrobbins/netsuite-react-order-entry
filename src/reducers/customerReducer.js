@@ -7,6 +7,7 @@ const customerReducer = (state = initalState.customer, action) => {
       return {
         ...state,
         searchText: '',
+        activeTab: 'results',
         customerSearchResults: action.customers
       };
 
@@ -14,6 +15,22 @@ const customerReducer = (state = initalState.customer, action) => {
       return {
         ...state,
         searchText: action.searchText
+      };
+
+    case actions.CUSTOMER_EDIT_BUTTON_CLICKED:
+      const clickedCustomer = state.customerSearchResults.find(c => c.id === action.customerId);
+      const recentCustomers = state.recentCustomers.filter(c => c.id !== action.customerId);
+      recentCustomers.unshift(clickedCustomer);
+
+      return {
+        ...state,
+        recentCustomers
+      };
+
+    case actions.CUSTOMER_SEARCH_TAB_CHANGED:
+      return {
+        ...state,
+        activeTab: action.activeTab
       };
 
     default:
