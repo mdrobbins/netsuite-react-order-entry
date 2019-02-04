@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import CustomerSearchScreen from './components/CustomerSearchScreen/CustomerSearchScreen'
 import PageHeader from "./components/common/PageHeader/PageHeader";
+import CustomerEntryScreen from "./components/CustomerEntryScreen/CustomerEntryScreen";
 
 class App extends Component {
   render() {
@@ -9,11 +11,17 @@ class App extends Component {
       <div className="App">
         <PageHeader/>
         <div id="content">
-          <CustomerSearchScreen/>
+          {this.props.showCustomerSearchScreen && <CustomerSearchScreen/>}
+          {this.props.showCustomerEntryScreen && <CustomerEntryScreen/>}
         </div>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  showCustomerSearchScreen: state.navigation.showCustomerSearchScreen,
+  showCustomerEntryScreen: state.navigation.showCustomerEntryScreen
+});
+
+export default connect(mapStateToProps)(App);

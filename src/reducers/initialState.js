@@ -5,8 +5,10 @@ export default {
     customerSearchResults: [],
     activeTab: 'results'
   },
-  order: {},
-  orders: [],
+  navigation: {
+    showCustomerSearchScreen: true,
+    showCustomerEntryScreen: false,
+  },
   ajax: {
     callsInProgress: 0,
     loadintText: 'Loading'

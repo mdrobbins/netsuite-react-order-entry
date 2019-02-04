@@ -18,7 +18,7 @@ const customerReducer = (state = initalState.customer, action) => {
       };
 
     case actions.CUSTOMER_EDIT_BUTTON_CLICKED: {
-      const clickedCustomer = state.customerSearchResults.find(c => c.id === action.customerId);
+      const clickedCustomer = action.customerList.find(c => c.id === action.customerId);
       const recentCustomers = state.recentCustomers.filter(c => c.id !== action.customerId).slice(0, 9);
       recentCustomers.unshift(clickedCustomer);
       localStorage.setItem('recentCustomers', JSON.stringify(recentCustomers));

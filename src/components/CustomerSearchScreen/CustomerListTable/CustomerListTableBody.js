@@ -5,7 +5,9 @@ import Button from "react-bootstrap/Button";
 import * as actions from '../../../actions/customerActions';
 
 const CustomerListTableBody = props => {
-  const onEditButtonClicked = customerId => props.dispatch(actions.editButtonClicked(customerId));
+  const onEditButtonClicked = (customerId) => {
+    props.dispatch(actions.editButtonClicked(customerId, props.customers));
+  };
 
   return (
     <tbody>
