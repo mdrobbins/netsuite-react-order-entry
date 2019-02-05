@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from "react-bootstrap/Button";
 import * as actions from '../../../actions/customerActions';
+import { Link } from "react-router-dom";
 
 const CustomerListTableBody = props => {
   const onEditButtonClicked = (customerId) => {
@@ -11,20 +12,24 @@ const CustomerListTableBody = props => {
 
   return (
     <tbody>
-    {props.customers.map(customer =>
-      <tr key={customer.id}>
-        <td>
-          <Button size="sm"
-                  variant="outline-secondary"
-                  onClick={() => onEditButtonClicked(customer.id)}>
-            Edit
-          </Button>
-        </td>
-        <td>{customer.number}</td>
-        <td>{customer.companyName}</td>
-        <td>{customer.email}</td>
-        <td>{customer.phone}</td>
-      </tr>
+    {props.customers.map(customer => {
+      const customerLink = `/customer/${customer.id}`;
+        return <tr key={customer.id}>
+          <td>
+            <Link to={customerLink}>
+            <Button size="sm"
+                    variant="outline-secondary"
+                    onClick={() => onEditButtonClicked(customer.id)}>
+              Edit
+            </Button>
+            </Link>
+          </td>
+          <td>{customer.number}</td>
+          <td>{customer.companyName}</td>
+          <td>{customer.email}</td>
+          <td>{customer.phone}</td>
+        </tr>
+    }
     )}
     </tbody>
   );
