@@ -1,7 +1,8 @@
 import * as apiData from './api.data';
 
 const api = {
-  searchCustomers: (searchString) => console.log('searching') || delay(500).then(() => apiData.searchCustomers(searchString))
+  searchCustomers: (searchString) => delay(500).then(() => apiData.searchCustomers(searchString)),
+  getCustomer: (id) => delay(500).then(() => apiData.getCustomer(id))
 };
 
 export default api;

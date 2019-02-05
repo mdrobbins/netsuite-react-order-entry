@@ -1,13 +1,12 @@
 export default {
   customer: {
-    searchText: '',
-    recentCustomers: [],
+    activeTab: 'results',
+    currentCustomer: {},
     customerSearchResults: [],
-    activeTab: 'results'
+    recentCustomers: [],
+    searchText: ''
   },
   navigation: {
-    showCustomerSearchScreen: true,
-    showCustomerEntryScreen: false,
   },
   ajax: {
     callsInProgress: 0,

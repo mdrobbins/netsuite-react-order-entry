@@ -1,4 +1,4 @@
-const customerData = [{ "id": 233, "number": "CUS00000001", "companyName": "", "email": "", "phone": "" }, {
+const customerListData = [{ "id": 233, "number": "CUS00000001", "companyName": "", "email": "", "phone": "" }, {
   "id": 177,
   "number": "CUS00000002",
   "companyName": "Computer Training Associates",
@@ -4458,4 +4458,4 @@ const customerData = [{ "id": 233, "number": "CUS00000001", "companyName": "", "
   "phone": "858-605-4546"
 }];
 
-export default customerData;
+export default customerListData;

@@ -1,7 +1,8 @@
+import customerListData from './data/customerListData';
 import customerData from './data/customerData';
 
 export const searchCustomers = searchString => {
-  const filteredCustomers = customerData.filter(c => {
+  const filteredCustomers = customerListData.filter(c => {
     return c.companyName.toLowerCase().includes(searchString)
       || c.number.toLowerCase().includes(searchString)
       || c.email.toLowerCase().includes(searchString)
@@ -16,3 +17,4 @@ export const searchCustomers = searchString => {
   };
 };
 
+export const getCustomer = () => customerData;

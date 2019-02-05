@@ -52,6 +52,13 @@ const customerReducer = (state = initalState.customer, action) => {
       };
     }
 
+    case actions.GET_CUSTOMER_SUCCESS: {
+      return {
+        ...state,
+        currentCustomer: action.customer
+      }
+    }
+
     default:
       return state;
   }
