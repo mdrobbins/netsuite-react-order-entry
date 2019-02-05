@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Container, Row, Col, Table } from "react-bootstrap";
 import * as actions from '../../actions/customerActions';
-import { isEmpty } from "../../api/common";
+import { isEmpty, formatUSD } from "../../api/common";
+import CustomerEntryForm from "./CustomerEntryForm";
+import { Link } from "react-router-dom";
 
 class CustomerEntryScreen extends Component {
   // noinspection JSUnusedGlobalSymbols
@@ -21,44 +23,38 @@ class CustomerEntryScreen extends Component {
               : <h2>Customer: {this.props.customer.number} - {this.props.customer.companyName}</h2>}
           </Col>
         </Row>
-        <Form className="mt-3">
-          <Row>
-            <Col md="6">
-              <Form.Group controlId="company-name" className="mt-1">
-                <Form.Label>Company Name</Form.Label>
-                <Form.Control value={this.props.customer.companyName}/>
-              </Form.Group>
-              <Form.Group controlId="email" className="mt-1">
-                <Form.Label>Email</Form.Label>
-                <Form.Control value={this.props.customer.email}/>
-              </Form.Group>
-              <Form.Group controlId="phone" className="mt-1">
-                <Form.Label>Phone</Form.Label>
-                <Form.Control value={this.props.customer.phone}/>
-              </Form.Group>
-            </Col>
-            <Col md="6">
-              <Form.Group controlId="comments" className="mt-1">
-                <Form.Label>Comments</Form.Label>
-                <Form.Control value={this.props.customer.comments} as="textarea" rows="4"/>
-              </Form.Group>
-              <Row>
-                <Col md={{ offset: 1, span: 5 }}>
-                  <Form.Group controlId="balance" className="mt-3">
-                    <Form.Label>Balance</Form.Label>
-                    <h3>{this.props.customer.balance}</h3>
-                  </Form.Group>
-                </Col>
-                <Col md={{ offset: 1, span: 5 }}>
-                  <Form.Group controlId="daysoverdue" className="mt-3">
-                    <Form.Label>Days Overdue</Form.Label>
-                    <h3>{this.props.customer.daysoverdue}</h3>
-                  </Form.Group>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </Form>
+        <CustomerEntryForm customer={this.props.customer}/>
+        <Row>
+          <h5 className="mt-5">Order History</h5>
+          <Table striped bordered hover>
+            <thead>
+            <tr>
+              <th/>
+              <th>Order #</th>
+              <th>Order Date</th>
+              <th>Status</th>
+              <th style={{ textAlign: 'right' }}>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            {this.props.customer.orders && this.props.customer.orders.map(order => {
+                const orderLink = `/order/${order.id}`;
+                return <tr key={order.id}>
+                  <td align="center">
+                    <Link to={orderLink}>
+                      View
+                    </Link>
+                  </td>
+                  <td>{order.number}</td>
+                  <td>{order.date}</td>
+                  <td>{order.status}</td>
+                  <td align="right">{formatUSD(order.total)}</td>
+                </tr>
+              }
+            )}
+            </tbody>
+          </Table>
+        </Row>
       </Container>
     );
   }
