@@ -56,7 +56,14 @@ const customerReducer = (state = initalState.customer, action) => {
       return {
         ...state,
         currentCustomer: action.customer
-      }
+      };
+    }
+
+    case actions.CLEAR_CUSTOMER: {
+      return {
+        ...state,
+        currentCustomer: {}
+      };
     }
 
     default:

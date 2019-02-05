@@ -8,6 +8,7 @@ export const CLEAR_RECENT_CUSTOMERS = 'CLEAR_RECENT_CUSTOMERS';
 
 // Customer edit screen actions
 export const GET_CUSTOMER_SUCCESS = 'GET_CUSTOMER_SUCCESS';
+export const CLEAR_CUSTOMER = 'CLEAR_CUSTOMER';
 
 // Ajax actions
 export const BEGIN_AJAX_CALL = 'BEGIN_AJAX_CALL';

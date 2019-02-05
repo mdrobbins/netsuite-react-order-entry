@@ -8,6 +8,7 @@ export const searchTabChanged = activeTab => ({ type: actions.CUSTOMER_SEARCH_TA
 export const getRecentCustomers = () => ({ type: actions.GET_RECENT_CUSTOMERS });
 export const clearRecentCustomers = () => ({ type: actions.CLEAR_RECENT_CUSTOMERS });
 export const getCustomerSuccess = (customer) => ({ type: actions.GET_CUSTOMER_SUCCESS, customer });
+export const clearCustomer = () => ({ type: actions.CLEAR_CUSTOMER });
 
 export const searchCustomers = searchText =>
   ajax.dispatchAsync('searching for customers', 'searchCustomers', searchCustomersSuccess, searchText);

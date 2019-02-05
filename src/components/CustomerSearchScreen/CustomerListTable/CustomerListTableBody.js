@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const CustomerListTableBody = props => {
   const onEditButtonClicked = (customerId) => {
+    props.dispatch(actions.clearCustomer());
     props.dispatch(actions.editButtonClicked(customerId, props.customers));
   };
 

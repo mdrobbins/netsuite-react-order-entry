@@ -16,7 +16,9 @@ class CustomerEntryScreen extends Component {
       <Container>
         <Row className="mt-2">
           <Col md="12">
-            { !isEmpty(this.props.customer) && <h2>{this.props.customer.number} - {this.props.customer.companyName}</h2> }
+            {isEmpty(this.props.customer)
+              ? <h2>Customer:</h2>
+              : <h2>Customer: {this.props.customer.number} - {this.props.customer.companyName}</h2>}
           </Col>
         </Row>
         <Form className="mt-3">
@@ -26,18 +28,10 @@ class CustomerEntryScreen extends Component {
                 <Form.Label>Company Name</Form.Label>
                 <Form.Control value={this.props.customer.companyName}/>
               </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="6">
               <Form.Group controlId="email" className="mt-1">
                 <Form.Label>Email</Form.Label>
                 <Form.Control value={this.props.customer.email}/>
               </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="6">
               <Form.Group controlId="phone" className="mt-1">
                 <Form.Label>Phone</Form.Label>
                 <Form.Control value={this.props.customer.phone}/>
