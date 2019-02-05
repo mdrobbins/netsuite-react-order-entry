@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Switch, Route, HashRouter as Router } from 'react-router-dom';
 import './App.css';
 import CustomerSearchScreen from './components/CustomerSearchScreen/CustomerSearchScreen'
 import PageHeader from "./components/common/PageHeader/PageHeader";
 import CustomerEntryScreen from "./components/CustomerEntryScreen/CustomerEntryScreen";
+import NotFound from './components/NotFound/NotFound';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <PageHeader/>
-        <div id="content">
-          {this.props.showCustomerSearchScreen && <CustomerSearchScreen/>}
-          {this.props.showCustomerEntryScreen && <CustomerEntryScreen/>}
-        </div>
+        <Router>
+          <div id="content">
+            <Switch>
+              <Route exact path="/" component={CustomerSearchScreen}/>
+              <Route path="/customer/:id" component={CustomerEntryScreen}/>
+              <Route component={NotFound}/>
+            </Switch>
+          </div>
+        </Router>
       </div>
     );
   }
