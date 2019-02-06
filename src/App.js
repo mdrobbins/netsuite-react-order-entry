@@ -6,17 +6,19 @@ import CustomerSearchScreen from './components/CustomerSearchScreen/CustomerSear
 import PageHeader from "./components/common/PageHeader/PageHeader";
 import CustomerEntryScreen from "./components/CustomerEntryScreen/CustomerEntryScreen";
 import NotFound from './components/NotFound/NotFound';
+import OrderEntryScreen from "./components/OrderEntryScreen/OrderEntryScreen";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <PageHeader/>
         <Router>
           <div id="content">
+            <PageHeader/>
             <Switch>
               <Route exact path="/" component={CustomerSearchScreen}/>
               <Route path="/customer/:id" component={CustomerEntryScreen}/>
+              <Route path="/order/:id" component={OrderEntryScreen}/>
               <Route component={NotFound}/>
             </Switch>
           </div>

@@ -20,6 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-combined": "node ./scripts/build-non-split.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -33,6 +34,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@hitc/netsuite-types": "^2018.2.14"
+    "@hitc/netsuite-types": "^2018.2.14",
+    "rewire": "^4.0.1"
   }
 }
