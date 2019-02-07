@@ -13,6 +13,13 @@ const customerData = {
       "id": -5,
       "name": "Mike Robbins"
     },
+    "addresses": [{
+      "id": 1,
+      "name": "10601 Gandy Blvd N #2402",
+    }, {
+      "id": 2,
+      "name": "11936 Tivoli Park Row #1"
+    }],
     "orders": [{
       "id": 944,
       "number": "SO0000179",

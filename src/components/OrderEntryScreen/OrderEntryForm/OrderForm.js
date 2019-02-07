@@ -1,7 +1,9 @@
 import React from 'react';
 import { Form } from "react-bootstrap";
+import { isEmpty } from "../../../api/common";
 
-const OrderForm = () => {
+const OrderForm = ({ customer }) => {
+  console.log(customer);
   return (
     <>
       <Form.Group controlId="po-number" className="mt-1">
@@ -11,8 +13,8 @@ const OrderForm = () => {
       <Form.Group controlId="shipping-address" className="mt-1">
         <Form.Label>Shipping Address</Form.Label>
         <Form.Control as="select">
-          <option>10601 Gandy Blvd N #2402</option>
-          <option>11936 Tivoli Park Row #1</option>
+          {!isEmpty(customer) && customer.addresses.map(address => <option key={address.id}
+                                                                           value={address.id}>{address.name}</option>)}
         </Form.Control>
       </Form.Group>
     </>);

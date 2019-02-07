@@ -28,7 +28,7 @@ class OrderEntryScreen extends Component {
         <Form className="mt-3">
           <Row>
             <Col md="5">
-              <OrderForm/>
+              <OrderForm customer={this.props.customer}/>
             </Col>
             <Col md="7">
               <OrderItemList/>
