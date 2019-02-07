@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Container, Row, Col, Button } from "react-bootstrap";
 import * as actions from '../../actions/customerActions';
 import { isEmpty } from "../../api/common";
@@ -13,7 +14,13 @@ class CustomerEntryScreen extends Component {
     this.props.dispatch(actions.getCustomer(params.id));
   };
 
+  onNewOrderClick = () => {
+    this.props.history.push('/order/new');
+  };
+
   render() {
+    const customerUrl = `/app/common/entity/custjob.nl?id=${this.props.customer.id}`;
+
     return (
       <Container>
         <Row className="mt-2">
@@ -25,8 +32,10 @@ class CustomerEntryScreen extends Component {
         </Row>
         <Row>
           <Button className="mt-4 ml-3">Save</Button>
-          <Button className="mt-4 ml-2" variant="secondary">New Order</Button>
-          <Button className="mt-4 ml-2" variant="secondary">Open In NetSuite</Button>
+          <Button className="mt-4 ml-2" variant="secondary" onClick={this.onNewOrderClick}>New Order</Button>
+          <a href={customerUrl} target="_blank" rel="noopener noreferrer"><Button className="mt-4 ml-2"
+                                                                                  variant="secondary">Open In
+            NetSuite</Button></a>
         </Row>
         <CustomerEntryForm customer={this.props.customer}/>
         <CustomerEntryOrderTable orders={this.props.customer.orders}/>
@@ -39,4 +48,4 @@ const mapStateToProps = state => ({
   customer: state.customer.currentCustomer
 });
 
-export default connect(mapStateToProps)(CustomerEntryScreen);
+export default connect(mapStateToProps)(withRouter(CustomerEntryScreen));

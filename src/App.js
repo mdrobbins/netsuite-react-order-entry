@@ -17,8 +17,9 @@ class App extends Component {
             <PageHeader/>
             <Switch>
               <Route exact path="/" component={CustomerSearchScreen}/>
-              <Route path="/customer/:id" component={CustomerEntryScreen}/>
-              <Route path="/order/:id" component={OrderEntryScreen}/>
+              <Route path="/customer/:id(\d+)" component={CustomerEntryScreen}/>
+              {/*<Route path="/order/:id(\d+)" component={OrderEntryScreen}/>*/}
+              <Route path="/order/new" component={OrderEntryScreen}/>
               <Route component={NotFound}/>
             </Switch>
           </div>
