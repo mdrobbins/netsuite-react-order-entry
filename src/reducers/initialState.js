@@ -52,7 +52,7 @@ export default {
   },
   item: {
     searchText: '',
-    searchResults: [{
+    itemSearchResults: [{
       id: 1,
       number: 'ITM00001',
       description: 'This is the description of the item',
