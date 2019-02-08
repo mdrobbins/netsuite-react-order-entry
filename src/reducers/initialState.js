@@ -43,12 +43,7 @@ export default {
   order: {
     customerPO: '',
     shippingAddress: 1,
-    items: [{
-      id: 1,
-      number: 'ITM00001',
-      quantity: 10,
-      rate: 100
-    }],
+    items: [],
   },
   item: {
     searchText: '',

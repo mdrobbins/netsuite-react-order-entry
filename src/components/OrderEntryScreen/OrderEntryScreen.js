@@ -31,7 +31,7 @@ class OrderEntryScreen extends Component {
               <OrderForm customer={this.props.customer}/>
             </Col>
             <Col md="7">
-              <OrderItemList/>
+              <OrderItemList items={this.props.order.items}/>
             </Col>
           </Row>
         </Form>
