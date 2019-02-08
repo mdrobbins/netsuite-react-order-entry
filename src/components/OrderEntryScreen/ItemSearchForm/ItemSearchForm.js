@@ -9,7 +9,18 @@ const ItemSearchForm = ({ item, ...props }) => {
     props.dispatch(actions.searchTextChanged(e.target.value))
   };
 
+  const onItemQuantityChanged = (e) => {
+    const itemId = Number(e.target.id);
+    const quantity = Number(e.target.value);
+    props.dispatch(actions.itemQuantityChanged(itemId, quantity));
+  };
+
   const onItemSearchClick = () => {
+    props.dispatch(actions.searchItems(item.searchText.trim()));
+  };
+
+  const onSearchFormSubmit = (e) => {
+    e.preventDefault();
     props.dispatch(actions.searchItems(item.searchText.trim()));
   };
 
@@ -17,10 +28,12 @@ const ItemSearchForm = ({ item, ...props }) => {
     <>
       <Row>
         <Col md="5">
-          <Form.Group controlId="item-search">
-            <Form.Label>Item Search</Form.Label>
-            <Form.Control value={item.searchText} onChange={onSearchTextChanged}/>
-          </Form.Group>
+          <Form onSubmit={onSearchFormSubmit}>
+            <Form.Group controlId="item-search">
+              <Form.Label>Item Search</Form.Label>
+              <Form.Control value={item.searchText} onChange={onSearchTextChanged}/>
+            </Form.Group>
+          </Form>
         </Col>
         <Col md="1">
           <Button style={{ marginTop: 32 }} variant="outline-secondary" onClick={onItemSearchClick}>Search</Button>
@@ -42,13 +55,18 @@ const ItemSearchForm = ({ item, ...props }) => {
           <tbody>
           {item.itemSearchResults.map(item => {
             const itemName = item.number.split(' : ').pop();
-            return <tr>
+            return <tr key={item.id}>
               <td><img src={item.imageUrl} height="40" width="40" alt=""/></td>
               <td>{itemName}</td>
               <td>{item.description}</td>
               <td align="center">{item.quantityAvailable}</td>
               <td align="right">{formatUSD(item.rate)}</td>
-              <td align="center"><Form.Control style={{ width: 80 }}/></td>
+              <td align="center">
+                <Form.Control style={{ width: 80 }}
+                              id={item.id}
+                              value={item.quantity}
+                              onChange={onItemQuantityChanged}/>
+              </td>
               <td><Button variant="outline-secondary">Add</Button></td>
             </tr>
           })}

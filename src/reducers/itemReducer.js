@@ -16,6 +16,21 @@ const itemReducer = (state = initialState.item, action) => {
         itemSearchResults: action.items
       };
 
+    case actions.ITEM_QUANTITY_CHANGED: {
+      const items = [...state.itemSearchResults];
+      const item = items.find(i => i.id === action.itemId);
+
+      if (item) {
+        item.quantity = action.quantity;
+        return {
+          ...state,
+          itemSearchResults: items
+        };
+      }
+
+      return state;
+    }
+
     default:
       return state;
   }
