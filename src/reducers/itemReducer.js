@@ -12,6 +12,7 @@ const itemReducer = (state = initialState.item, action) => {
     case actions.SEARCH_ITEMS_SUCCESS:
       return {
         ...state,
+        searchText: '',
         itemSearchResults: action.items
       };
 

@@ -40,17 +40,18 @@ const ItemSearchForm = ({ item, ...props }) => {
           </tr>
           </thead>
           <tbody>
-          {item.itemSearchResults.map(item => (
-            <tr>
-              <td><img src={item.imageUrl} height="40" width="40" alt={item.number}/></td>
-              <td>{item.number.split(' : ').pop()}</td>
+          {item.itemSearchResults.map(item => {
+            const itemName = item.number.split(' : ').pop();
+            return <tr>
+              <td><img src={item.imageUrl} height="40" width="40" alt=""/></td>
+              <td>{itemName}</td>
               <td>{item.description}</td>
               <td align="center">{item.quantityAvailable}</td>
               <td align="right">{formatUSD(item.rate)}</td>
               <td align="center"><Form.Control style={{ width: 80 }}/></td>
               <td><Button variant="outline-secondary">Add</Button></td>
             </tr>
-          ))}
+          })}
           </tbody>
         </Table>
       </Row>

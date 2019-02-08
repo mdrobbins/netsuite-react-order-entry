@@ -52,36 +52,12 @@ export default {
   },
   item: {
     searchText: '',
-    itemSearchResults: [{
-      id: 1,
-      number: 'ITM00001',
-      description: 'This is the description of the item',
-      quantityAvailable: 100,
-      rate: 100,
-      quantity: '',
-      imageUrl: '/images/bowcaster.png'
-    }, {
-      id: 2,
-      number: 'ITM00002',
-      description: 'This is the description of the item',
-      quantityAvailable: 100,
-      rate: 100,
-      quantity: '',
-      imageUrl: '/images/bowcaster.png'
-    }, {
-      id: 3,
-      number: 'ITM00003',
-      description: 'This is the description of the item',
-      quantityAvailable: 100,
-      rate: 100,
-      quantity: '',
-      imageUrl: '/images/bowcaster.png'
-    }]
+    itemSearchResults: []
   },
   navigation: {
   },
   ajax: {
     callsInProgress: 0,
-    loadintText: 'Loading'
+    loadingText: 'Loading'
   }
 };
