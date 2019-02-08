@@ -24,6 +24,11 @@ const ItemSearchForm = ({ item, ...props }) => {
     props.dispatch(actions.searchItems(item.searchText.trim()));
   };
 
+  const onAddItemClick = (itemId) => {
+    itemId = Number(itemId);
+    props.dispatch(actions.addItemToOrder(itemId));
+  };
+
   return (
     <>
       <Row>
@@ -67,7 +72,13 @@ const ItemSearchForm = ({ item, ...props }) => {
                               value={item.quantity}
                               onChange={onItemQuantityChanged}/>
               </td>
-              <td><Button variant="outline-secondary">Add</Button></td>
+              <td>
+                <Button variant="outline-secondary"
+                        disabled={item.quantity <= 0}
+                        onClick={() => onAddItemClick(item.id)}>
+                  Add
+                </Button>
+              </td>
             </tr>
           })}
           </tbody>
