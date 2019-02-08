@@ -48,7 +48,7 @@ export default {
       number: 'ITM00001',
       quantity: 10,
       rate: 100
-    }]
+    }],
   },
   item: {
     searchText: '',

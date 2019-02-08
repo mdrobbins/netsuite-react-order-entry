@@ -36,7 +36,7 @@ class OrderEntryScreen extends Component {
           </Row>
         </Form>
         <hr/>
-        <ItemSearchForm/>
+        <ItemSearchForm item={this.props.item}/>
       </Container>
     );
   }
@@ -44,7 +44,8 @@ class OrderEntryScreen extends Component {
 
 const mapStateToProps = state => ({
   customer: state.customer.currentCustomer,
-  order: state.order
+  order: state.order,
+  item: state.item
 });
 
 export default connect(mapStateToProps)(OrderEntryScreen);

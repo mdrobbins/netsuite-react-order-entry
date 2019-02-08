@@ -1,15 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Button, Col, Form, Row, Table } from "react-bootstrap";
+import * as actions from '../../../actions/orderActions';
 
-const ItemSearchForm = () => {
+const ItemSearchForm = ({ item, ...props }) => {
   const imageUrl = '/images/bowcaster.png';
+
+  const onSearchTextChanged = e => {
+    props.dispatch(actions.searchTextChanged(e.target.value))
+  };
+
   return (
     <>
       <Row>
         <Col md="5">
           <Form.Group controlId="item-search">
             <Form.Label>Item Search</Form.Label>
-            <Form.Control/>
+            <Form.Control value={item.searchText} onChange={onSearchTextChanged}/>
           </Form.Group>
         </Col>
         <Col md="1">
@@ -46,4 +53,4 @@ const ItemSearchForm = () => {
   );
 };
 
-export default ItemSearchForm;
+export default connect()(ItemSearchForm);
