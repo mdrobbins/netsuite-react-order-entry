@@ -43,7 +43,8 @@ class OrderEntryScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  customer: state.customer.currentCustomer
+  customer: state.customer.currentCustomer,
+  order: state.order
 });
 
 export default connect(mapStateToProps)(OrderEntryScreen);

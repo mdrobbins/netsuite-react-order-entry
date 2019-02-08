@@ -1,3 +1,4 @@
+/* eslint-disable import/no-amd */
 require(['N/log', 'N/search'], function(log, search) {
   // noinspection ES6ConvertVarToLetConst
   var results = search.create({
@@ -24,5 +25,32 @@ require(['N/log', 'N/search'], function(log, search) {
     };
   });
 
+  var itemResults = search.create({
+    type: 'item',
+    filters: [
+      ['isinactive', 'is', 'F'],
+      'and', ['inventorylocation', 'anyof', 1],
+      'and', ['locationquantityavailable', 'greaterthan', 0]
+    ],
+    columns: [
+      'itemid',
+      'salesdescription',
+      'baseprice',
+      'locationquantityavailable'
+    ]
+  }).run().getRange({ start: 0, end: 1000 });
+
+  var itemData = itemResults.map(function (result) {
+    return {
+      id: Number(result.id),
+      number: result.getValue('itemid'),
+      description: result.getValue('salesdescription'),
+      rate: Number(result.getValue('baseprice')) || 0,
+      quantityAvailable: Number(result.getValue('locationquantityavailable')) || 0,
+      imageUrl: '/images/bowcaster.png'
+    };
+  });
+
+  log.debug('test', itemData);
   log.debug('test', customerData);
 });

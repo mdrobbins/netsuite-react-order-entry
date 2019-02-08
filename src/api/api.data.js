@@ -1,12 +1,29 @@
 import customerListData from './data/customerListData';
 import customerData from './data/customerData';
+import itemData from './data/itemData';
+
+export const getCustomer = () => customerData;
+
+export const searchItems = searchString => {
+  const filteredItems = itemData.filter(i => {
+    return i.number.toLowerCase().includes(searchString.toLowerCase())
+      || i.description.toLowerCase().includes(searchString.toLowerCase())
+  });
+  return {
+    isSuccess: true,
+    result: filteredItems,
+    totalCount: 2,
+    elapsedSeconds: 2.234,
+    remainingUsage: 950
+  };
+};
 
 export const searchCustomers = searchString => {
   const filteredCustomers = customerListData.filter(c => {
-    return c.companyName.toLowerCase().includes(searchString)
-      || c.number.toLowerCase().includes(searchString)
-      || c.email.toLowerCase().includes(searchString)
-      || c.phone.replace(/\D/g, '').includes(searchString)
+    return c.companyName.toLowerCase().includes(searchString.toLowerCase())
+      || c.number.toLowerCase().includes(searchString.toLowerCase())
+      || c.email.toLowerCase().includes(searchString.toLowerCase())
+      || c.phone.replace(/\D/g, '').includes(searchString.toLowerCase())
   });
   return {
     isSuccess: true,
@@ -17,4 +34,5 @@ export const searchCustomers = searchString => {
   };
 };
 
-export const getCustomer = () => customerData;
+
+
