@@ -7,6 +7,7 @@ import PageHeader from "./components/common/PageHeader/PageHeader";
 import CustomerEntryScreen from "./components/CustomerEntryScreen/CustomerEntryScreen";
 import NotFound from './components/NotFound/NotFound';
 import OrderEntryScreen from "./components/OrderEntryScreen/OrderEntryScreen";
+import Spinner from './components/common/Spinner/Spinner';
 
 class App extends Component {
   render() {
@@ -24,6 +25,8 @@ class App extends Component {
             </Switch>
           </div>
         </Router>
+        <Spinner isLoading={this.props.callsInProgress > 0}
+                 loadingText={this.props.loadingText}/>
       </div>
     );
   }
@@ -31,7 +34,9 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   showCustomerSearchScreen: state.navigation.showCustomerSearchScreen,
-  showCustomerEntryScreen: state.navigation.showCustomerEntryScreen
+  showCustomerEntryScreen: state.navigation.showCustomerEntryScreen,
+  callsInProgress: state.ajax.callsInProgress,
+  loadingText: state.ajax.loadingText
 });
 
 export default connect(mapStateToProps)(App);

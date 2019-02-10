@@ -19,5 +19,5 @@ export default function ajaxReducer(state = initialState.ajax, action) {
 }
 
 function actionTypeEndsInSuccess(type) {
-  return type.substring(type.length - 8) === 'SUCCESS';
+  return type.substring(type.length - 8) === '_SUCCESS';
 }
