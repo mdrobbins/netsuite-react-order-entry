@@ -9,6 +9,14 @@ export const getRecentCustomers = () => ({ type: actions.GET_RECENT_CUSTOMERS })
 export const clearRecentCustomers = () => ({ type: actions.CLEAR_RECENT_CUSTOMERS });
 export const getCustomerSuccess = (customer) => ({ type: actions.GET_CUSTOMER_SUCCESS, customer });
 export const clearCustomer = () => ({ type: actions.CLEAR_CUSTOMER });
+export const saveCustomerSuccess = () => ({ type: actions.SAVE_CUSTOMER_SUCCESS });
+export const companyNameChanged = (companyName) => ({ type: actions.COMPANY_NAME_CHANGED, companyName });
+export const emailChanged = (email) => ({ type: actions.EMAIL_CHANGED, email });
+export const phoneChanged = (phone) => ({ type: actions.PHONE_CHANGED, phone });
+export const commentsChanged = (comments) => ({ type: actions.COMMENTS_CHANGED, comments });
+
+export const saveCustomer = customerInfo =>
+  ajax.dispatchAsync('saving customer', 'saveCustomer', saveCustomerSuccess, customerInfo);
 
 export const searchCustomers = searchText =>
   ajax.dispatchAsync('searching for customers', 'searchCustomers', searchCustomersSuccess, searchText);

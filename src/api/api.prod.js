@@ -11,6 +11,18 @@ const api = {
     return this.makeAjaxCall(this.salesOrderApi, data);
   },
 
+  saveCustomer: function (customerInfo) {
+    const data = {
+      action: 'saveCustomer',
+      customerId: customerInfo.customerId,
+      companyName: customerInfo.companyName,
+      email: customerInfo.email,
+      phone: customerInfo.phone,
+      comments: customerInfo.comments
+    };
+    return this.makeAjaxCall(this.salesOrderApi, data);
+  },
+
   makeAjaxCall: function (url, data) {
     return fetch(url, {
       method: 'POST',

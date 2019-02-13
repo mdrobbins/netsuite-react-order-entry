@@ -4,6 +4,13 @@ import itemData from './data/itemData';
 
 export const getCustomer = () => customerData;
 
+export const saveCustomer = () => ({
+  "isSuccess": true,
+  "result": 968,
+  "elapsedSeconds": 8.177,
+  "remainingUsage": 4995
+});
+
 export const searchItems = searchString => {
   const filteredItems = itemData.filter(i => {
     return i.number.toLowerCase().includes(searchString.toLowerCase())

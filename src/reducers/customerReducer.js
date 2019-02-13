@@ -2,7 +2,7 @@ import initalState from './initialState';
 import * as actions from '../actions/actionTypes';
 
 const customerReducer = (state = initalState.customer, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case actions.SEARCH_CUSTOMERS_SUCCESS:
       return {
         ...state,
@@ -28,6 +28,42 @@ const customerReducer = (state = initalState.customer, action) => {
         recentCustomers
       };
     }
+
+    case actions.COMPANY_NAME_CHANGED:
+      return {
+        ...state,
+        currentCustomer: {
+          ...state.currentCustomer,
+          companyName: action.companyName
+        }
+      };
+
+    case actions.EMAIL_CHANGED:
+      return {
+        ...state,
+        currentCustomer: {
+          ...state.currentCustomer,
+          email: action.email
+        }
+      };
+
+    case actions.PHONE_CHANGED:
+      return {
+        ...state,
+        currentCustomer: {
+          ...state.currentCustomer,
+          phone: action.phone
+        }
+      };
+
+    case actions.COMMENTS_CHANGED:
+      return {
+        ...state,
+        currentCustomer: {
+          ...state.currentCustomer,
+          comments: action.comments
+        }
+      };
 
     case actions.CUSTOMER_SEARCH_TAB_CHANGED:
       return {
