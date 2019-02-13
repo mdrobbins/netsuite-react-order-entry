@@ -28,6 +28,11 @@ const api = {
     return this.makeAjaxCall(this.salesOrderApi, data);
   },
 
+  saveOrder: function (orderData) {
+    const data = { action: 'saveOrder', orderData };
+    return this.makeAjaxCall(this.salesOrderApi, data);
+  },
+
   makeAjaxCall: function (url, data) {
     return fetch(url, {
       method: 'POST',

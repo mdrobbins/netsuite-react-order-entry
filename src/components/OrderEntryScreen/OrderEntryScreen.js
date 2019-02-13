@@ -5,6 +5,7 @@ import { isEmpty } from "../../api/common";
 import OrderItemList from "./OrderItemList/OrderItemList";
 import OrderForm from "./OrderEntryForm/OrderForm";
 import ItemSearchForm from "./ItemSearchForm/ItemSearchForm";
+import * as actions from '../../actions/orderActions';
 
 class OrderEntryScreen extends Component {
   constructor(props) {
@@ -19,6 +20,11 @@ class OrderEntryScreen extends Component {
     return !order.poNumber || order.items.length === 0;
   };
 
+  onSaveButtonClicked = () => {
+    const orderData = this.props.order;
+    this.props.dispatch(actions.saveOrder(orderData));
+  };
+
   render() {
     return (
       <Container>
@@ -28,7 +34,11 @@ class OrderEntryScreen extends Component {
           </Col>
         </Row>
         <Row>
-          <Button className="mt-4 ml-3" disabled={this.saveButtonDisabled()}>Save Order</Button>
+          <Button className="mt-4 ml-3"
+                  disabled={this.saveButtonDisabled()}
+                  onClick={this.onSaveButtonClicked}>
+            Save Order
+          </Button>
         </Row>
         <Form className="mt-3">
           <Row>

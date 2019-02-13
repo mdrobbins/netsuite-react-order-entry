@@ -4,7 +4,8 @@ const api = {
   searchCustomers: searchString => delay(500).then(() => apiData.searchCustomers(searchString)),
   getCustomer: id => delay(500).then(() => apiData.getCustomer(id)),
   searchItems: searchString => delay(500).then(() => apiData.searchItems(searchString)),
-  saveCustomer: customerInfo => delay(500).then(() => apiData.saveCustomer(customerInfo))
+  saveCustomer: customerInfo => delay(500).then(() => apiData.saveCustomer(customerInfo)),
+  saveOrder: orderData => delay(500).then(() => apiData.saveOrder(orderData))
 };
 
 export default api;

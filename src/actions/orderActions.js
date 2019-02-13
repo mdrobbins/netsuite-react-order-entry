@@ -19,5 +19,11 @@ export const poNumberChanged = poNumber =>
 export const shipToAddressChanged = addressId =>
   ({ type: actions.SHIPTO_ADDRESS_CHANGED, addressId });
 
+export const saveOrderSuccess = () =>
+  ({ type: actions.SAVE_ORDER_SUCCESS });
+
+export const saveOrder = orderData => console.log(orderData) ||
+  ajax.dispatchAsync('saving order', 'saveOrder', saveOrderSuccess, orderData);
+
 export const searchItems = searchText =>
   ajax.dispatchAsync('searching for items', 'searchItems', searchItemsSuccess, searchText);

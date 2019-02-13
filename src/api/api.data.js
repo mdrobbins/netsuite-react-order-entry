@@ -11,6 +11,13 @@ export const saveCustomer = () => ({
   "remainingUsage": 4995
 });
 
+export const saveOrder = () => ({
+  "isSuccess": true,
+  "result": 968,
+  "elapsedSeconds": 8.177,
+  "remainingUsage": 4995
+});
+
 export const searchItems = searchString => {
   const filteredItems = itemData.filter(i => {
     return i.number.toLowerCase().includes(searchString.toLowerCase())
