@@ -16,8 +16,8 @@ const OrderItemList = ({ items }) => {
         </tr>
         </thead>
         <tbody>
-        {items.map(item => (
-          <tr>
+        {items.map((item, index) => (
+          <tr key={index}>
             <td>{item.number}</td>
             <td align="center">{item.quantity}</td>
             <td align="right">{formatUSD(item.rate)}</td>
