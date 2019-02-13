@@ -14,6 +14,11 @@ class OrderEntryScreen extends Component {
     }
   }
 
+  saveButtonDisabled = () => {
+    const order = this.props.order;
+    return !order.poNumber || order.items.length === 0;
+  };
+
   render() {
     return (
       <Container>
@@ -23,7 +28,7 @@ class OrderEntryScreen extends Component {
           </Col>
         </Row>
         <Row>
-          <Button className="mt-4 ml-3">Save Order</Button>
+          <Button className="mt-4 ml-3" disabled={this.saveButtonDisabled()}>Save Order</Button>
         </Row>
         <Form className="mt-3">
           <Row>

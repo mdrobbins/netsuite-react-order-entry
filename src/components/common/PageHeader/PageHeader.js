@@ -5,7 +5,7 @@ const PageHeader = () => {
   return (
     <NavBar bg="dark"
             variant="dark">
-      <NavBar.Brand href="/">DataTek Software - Order Entry</NavBar.Brand>
+      <NavBar.Brand href="#/">DataTek Software - Order Entry</NavBar.Brand>
     </NavBar>
   );
 };
