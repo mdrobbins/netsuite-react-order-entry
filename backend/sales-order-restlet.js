@@ -3,8 +3,8 @@
  * @NScriptType Restlet
  * @NModuleScope Public
  */
-define(['N/log', 'N/search', 'N/runtime', 'N/util', './safeExecute', './timer'],
-  function (log, search, runtime, util, safeExecute, Timer) {
+define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute', './timer'],
+  function (log, search, runtime, util, record, safeExecute, Timer) {
     function post(request) {
       var timer = new Timer();
       var response = {};
@@ -15,6 +15,10 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', './safeExecute', './timer'],
 
         case 'getCustomer':
           response = safeExecute(getCustomerDetail, request.customerId);
+          break;
+
+        case 'saveCustomer':
+          response = safeExecute(saveCustomer, request);
           break;
 
         default:
@@ -35,6 +39,24 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', './safeExecute', './timer'],
       return response;
 
       ////////////////////////////////////////
+
+      function saveCustomer(data) {
+        var values = {
+          'companyname': data.companyName,
+          'email': data.email,
+          'phone': data.phone,
+          'comments': data.comments
+        };
+
+        return record.submitFields({
+          type: 'customer',
+          id: data.customerId,
+          values: values,
+          options: {
+            ignoreMandatoryFields: true
+          }
+        });
+      }
 
       function getCustomerDetail(customerId) {
         var customer = getCustomer(customerId);
