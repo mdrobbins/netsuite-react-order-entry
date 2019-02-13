@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Row, Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { formatUSD } from "../../api/common";
 
 const CustomerEntryOrderTable = ({ orders }) => {
@@ -20,12 +19,12 @@ const CustomerEntryOrderTable = ({ orders }) => {
         </thead>
         <tbody>
         {orders && orders.map(order => {
-            const orderLink = `/order/${order.id}`;
+          const orderLink = `/app/accounting/transactions/salesord.nl?id=${order.id}&whence=`;
             return <tr key={order.id}>
               <td align="center">
-                <Link to={orderLink}>
+                <a href={orderLink} target='_blank' rel='noopener noreferrer'>
                   View
-                </Link>
+                </a>
               </td>
               <td>{order.number}</td>
               <td>{order.date}</td>
