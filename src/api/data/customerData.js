@@ -8,7 +8,7 @@ const customerData = {
     "phone": "8587742746",
     "comments": "This is a test comment",
     "balance": 12345.67,
-    "daysoverdue": 45,
+    "daysOverdue": 45,
     "salesRep": {
       "id": -5,
       "name": "Mike Robbins"

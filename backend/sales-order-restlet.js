@@ -13,16 +13,8 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', './safeExecute', './timer'],
           response = safeExecute(getCustomers, request.searchText);
           break;
 
-        case 'getCustomerDetail':
-          response = safeExecute(getCustomerDetail, request.customerId);
-          break;
-
         case 'getCustomer':
-          response = safeExecute(getCustomer, request.customerId);
-          break;
-
-        case 'getCustomerOrders':
-          response = safeExecute(getCustomerOrders, request.customerId);
+          response = safeExecute(getCustomerDetail, request.customerId);
           break;
 
         default:

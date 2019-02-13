@@ -36,7 +36,7 @@ const CustomerEntryForm = (props) => {
             <Col md={{ offset: 1, span: 5 }}>
               <Form.Group controlId="daysoverdue" className="mt-3">
                 <Form.Label>Days Overdue</Form.Label>
-                <h3>{props.customer.daysoverdue}</h3>
+                <h3>{props.customer.daysOverdue}</h3>
               </Form.Group>
             </Col>
           </Row>

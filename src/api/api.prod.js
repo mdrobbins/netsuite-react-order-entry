@@ -3,7 +3,11 @@ const api = {
 
   searchCustomers: function (searchText) {
     const data = { action: 'searchCustomers', searchText };
-    console.log(this);
+    return this.makeAjaxCall(this.salesOrderApi, data);
+  },
+
+  getCustomer: function (customerId) {
+    const data = { action: 'getCustomer', customerId };
     return this.makeAjaxCall(this.salesOrderApi, data);
   },
 
