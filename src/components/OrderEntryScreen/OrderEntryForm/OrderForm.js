@@ -20,7 +20,7 @@ const OrderForm = ({ customer, order, dispatch }) => {
                       value={order.shippingAddress}
                       onChange={onShipToAddressChanged}>
           {!isEmpty(customer) && customer.addresses.map(address => <option key={address.id}
-                                                                           value={address.id}>{address.name}</option>)}
+                                                                           value={address.id}>{address.label}</option>)}
         </Form.Control>
       </Form.Group>
     </>);

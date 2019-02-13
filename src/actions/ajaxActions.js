@@ -1,8 +1,11 @@
 import * as actions from './actionTypes';
 import api from '../api';
 
-export const beginCall = message => ({ type: actions.BEGIN_AJAX_CALL, message });
-export const ajaxError = (message, notify) => ({ type: actions.AJAX_CALL_ERROR, message, notify });
+export const beginCall = message =>
+  ({ type: actions.BEGIN_AJAX_CALL, message });
+
+export const ajaxError = (message, notify) =>
+  ({ type: actions.AJAX_CALL_ERROR, message, notify });
 
 /**
  * A common function to make an api function call then dispatch an action with the result
