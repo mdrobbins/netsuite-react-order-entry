@@ -39,8 +39,8 @@ const CustomerEntryOrderTable = ({ orders }) => {
   );
 };
 
-CustomerEntryOrderTable.PropTypes = {
-  orders: PropTypes.array.isRequired
+CustomerEntryOrderTable.propTypes = {
+  orders: PropTypes.array
 };
 
 export default CustomerEntryOrderTable;
