@@ -21,6 +21,10 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
           response = safeExecute(saveCustomer, request);
           break;
 
+        case 'searchItems':
+          response = safeExecute(searchItems, request.searchText);
+          break;
+
         default:
           response = {
             isSuccess: false,
@@ -39,6 +43,37 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
       return response;
 
       ////////////////////////////////////////
+
+      function searchItems(searchText) {
+        var results = search.create({
+          type: 'item',
+          filters: [
+            ['isinactive', 'is', 'F'],
+            'and', ['inventorylocation', 'anyof', 1],
+            'and', ['locationquantityavailable', 'greaterthan', 0],
+            'and', [['itemid', 'contains', searchText], 'or', ['salesdescription', 'contains', searchText]]
+          ],
+          columns: [
+            'itemid',
+            'salesdescription',
+            'baseprice',
+            'locationquantityavailable',
+            'imageurl'
+          ]
+        }).run().getRange({ start: 0, end: 1000 });
+
+        return (results || []).map(function (result) {
+          var itemId = Number(result.id);
+          return {
+            id: itemId,
+            number: result.getValue('itemid'),
+            description: result.getValue('salesdescription'),
+            rate: Number(result.getValue('baseprice')) || 0,
+            quantityAvailable: Number(result.getValue('locationquantityavailable')) || 0,
+            imageUrl: result.getValue('imageurl')
+          };
+        });
+      }
 
       function saveCustomer(data) {
         var values = {

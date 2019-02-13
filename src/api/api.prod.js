@@ -23,6 +23,11 @@ const api = {
     return this.makeAjaxCall(this.salesOrderApi, data);
   },
 
+  searchItems: function (searchText) {
+    const data = { action: 'searchItems', searchText };
+    return this.makeAjaxCall(this.salesOrderApi, data);
+  },
+
   makeAjaxCall: function (url, data) {
     return fetch(url, {
       method: 'POST',
