@@ -15,8 +15,6 @@ export default {
     searchText: '',
     itemSearchResults: []
   },
-  navigation: {
-  },
   ajax: {
     callsInProgress: 0,
     loadingText: 'Loading'

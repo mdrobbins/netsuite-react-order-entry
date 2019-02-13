@@ -19,7 +19,6 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={CustomerSearchScreen}/>
               <Route path="/customer/:id(\d+)" component={CustomerEntryScreen}/>
-              {/*<Route path="/order/:id(\d+)" component={OrderEntryScreen}/>*/}
               <Route path="/order/new" component={OrderEntryScreen}/>
               <Route component={NotFound}/>
             </Switch>
@@ -33,8 +32,6 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  showCustomerSearchScreen: state.navigation.showCustomerSearchScreen,
-  showCustomerEntryScreen: state.navigation.showCustomerEntryScreen,
   callsInProgress: state.ajax.callsInProgress,
   loadingText: state.ajax.loadingText
 });
