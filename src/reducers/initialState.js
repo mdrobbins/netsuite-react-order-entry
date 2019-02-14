@@ -7,7 +7,7 @@ export default {
     searchText: ''
   },
   order: {
-    customerPO: '',
+    poNumber: '',
     shippingAddress: 1,
     items: [],
   },

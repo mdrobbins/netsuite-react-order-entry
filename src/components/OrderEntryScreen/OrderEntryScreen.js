@@ -21,7 +21,8 @@ class OrderEntryScreen extends Component {
   };
 
   onSaveButtonClicked = () => {
-    const orderData = this.props.order;
+    let orderData = this.props.order;
+    orderData.customerId = this.props.customer.id;
     this.props.dispatch(actions.saveOrder(orderData));
   };
 
