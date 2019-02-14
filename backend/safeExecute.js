@@ -6,7 +6,7 @@
 define(['N/log', 'N/error'], function (log, error) {
   /**
    * Wraps a potentially unsafe NetSUite call in a try/catch and implements basic loggins
-   * @returns {{isSuccess: bool, message: string, details: object, result: object}}
+   * @returns {{isSuccess: bool, message: string, details: object, result: object|number}}
    */
   function safeExecute() {
     var parameters = Array.prototype.slice.call(arguments);

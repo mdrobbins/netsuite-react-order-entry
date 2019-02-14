@@ -25,6 +25,10 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
           response = safeExecute(searchItems, request.searchText);
           break;
 
+        case 'saveOrder':
+          response = safeExecute(saveOrder, request.orderData);
+          break;
+
         default:
           response = {
             isSuccess: false,
@@ -43,6 +47,33 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
       return response;
 
       ////////////////////////////////////////
+
+      function saveOrder(orderData) {
+        var salesOrder = record.create({
+          type: 'salesorder',
+          isDynamic: true
+        });
+
+        salesOrder.setValue({ fieldId: 'entity', value: orderData.customerId });
+        salesOrder.setValue({ fieldId: 'otherrefnum', value: orderData.poNumber });
+        salesOrder.setText({ fieldId: 'shipcarrier', value: 'More' });
+
+        orderData.items.forEach(function (item) {
+          salesOrder.selectNewLine({ sublistId: 'item' });
+          salesOrder.setCurrentSublistValue({ sublistId: 'item', fieldId: 'item', value: item.id });
+          salesOrder.setCurrentSublistValue({ sublistId: 'item', fieldId: 'quantity', value: item.quantity });
+          salesOrder.setCurrentSublistValue({ sublistId: 'item', fieldId: 'rate', value: item.rate });
+          salesOrder.setCurrentSublistValue({ sublistId: 'item', fieldId: 'taxcode', value: -146 });
+          salesOrder.commitLine({ sublistId: 'item' });
+        });
+
+        var save = safeExecute(salesOrder.save);
+        if (save.isSuccess) {
+          var so = record.load({ type: 'salesorder', id: save.result.toString() });
+          salesOrder.setValue({ fieldId: 'shipaddresslist', value: orderData.shippingAddress });
+          return so.save();
+        }
+      }
 
       function searchItems(searchText) {
         var results = search.create({
@@ -140,7 +171,7 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
             'comments',
             'balance',
             'daysoverdue',
-            'address.internalid',
+            'address.addressinternalid',
             'address.addresslabel'
           ]
         }).run().getRange({ start: 0, end: 1000 });
@@ -159,7 +190,7 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
 
           acc.addresses = acc.addresses || [];
           acc.addresses.push({
-            id: result.getValue({ name: 'internalid', join: 'address' }),
+            id: result.getValue({ name: 'addressinternalid', join: 'address' }),
             label: result.getValue({ name: 'addresslabel', join: 'address' })
           });
 
