@@ -1,5 +1,9 @@
 import * as ajax from './ajaxActions';
 import * as actions from './actionTypes';
+import api from "../api";
+import { beginCall } from "./ajaxActions";
+import { ajaxError } from "./ajaxActions";
+import { createHashHistory } from 'history';
 
 export const searchItemsSuccess = items =>
   ({ type: actions.SEARCH_ITEMS_SUCCESS, items });
@@ -22,8 +26,27 @@ export const shipToAddressChanged = addressId =>
 export const saveOrderSuccess = () =>
   ({ type: actions.SAVE_ORDER_SUCCESS });
 
-export const saveOrder = orderData => console.log(orderData) ||
-  ajax.dispatchAsync('saving order', 'saveOrder', saveOrderSuccess, orderData);
-
 export const searchItems = searchText =>
   ajax.dispatchAsync('searching for items', 'searchItems', searchItemsSuccess, searchText);
+
+export function saveOrder(orderData) {
+  return function (dispatch) {
+    dispatch(beginCall('saving order'));
+    // noinspection JSUnresolvedFunction
+    return api.saveOrder(orderData)
+      .then(response => !!response.json ? response.json() : response)
+      .then(response => {
+        if (!response.isSuccess) {
+          throw response.error ? response.error.message : response.message;
+        }
+        dispatch(saveOrderSuccess(response.result));
+      })
+      .catch(error => {
+        dispatch(ajaxError(error, true));
+      })
+      .finally(() => {
+        const history = createHashHistory();
+        history.push(`/customer/${orderData.customerId}`);
+      });
+  }
+}
