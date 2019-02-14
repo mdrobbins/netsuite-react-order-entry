@@ -15,6 +15,7 @@ class CustomerEntryScreen extends Component {
   };
 
   onNewOrderClick = () => {
+    this.props.dispatch(actions.newOrderButtonClicked());
     this.props.history.push('/order/new');
   };
 

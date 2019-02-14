@@ -8,7 +8,7 @@ export default {
   },
   order: {
     poNumber: '',
-    shippingAddress: 1,
+    shippingAddress: null,
     items: [],
   },
   item: {

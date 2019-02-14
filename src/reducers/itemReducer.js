@@ -31,6 +31,9 @@ const itemReducer = (state = initialState.item, action) => {
       return state;
     }
 
+    case actions.NEW_ORDER_BUTTON_CLICKED:
+      return initialState.item;
+
     default:
       return state;
   }

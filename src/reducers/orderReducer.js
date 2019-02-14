@@ -16,6 +16,13 @@ const orderReducer = (state = initialState.order, action) => {
         shippingAddress: Number(action.addressId)
       };
 
+    case actions.NEW_ORDER_BUTTON_CLICKED:
+      return {
+        ...state,
+        poNumber: '',
+        items: []
+      };
+
     default:
       return state;
   }

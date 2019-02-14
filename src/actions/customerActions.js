@@ -42,6 +42,9 @@ export const phoneChanged = phone =>
 export const commentsChanged = comments =>
   ({ type: actions.COMMENTS_CHANGED, comments });
 
+export const newOrderButtonClicked = () =>
+  ({ type: actions.NEW_ORDER_BUTTON_CLICKED });
+
 export const saveCustomer = customerInfo =>
   ajax.dispatchAsync('saving customer', 'saveCustomer', saveCustomerSuccess, customerInfo);
 
