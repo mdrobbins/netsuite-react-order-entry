@@ -15,10 +15,10 @@ const customerData = {
     },
     "addresses": [{
       "id": 1,
-      "name": "10601 Gandy Blvd N #2402",
+      "label": "10601 Gandy Blvd N #2402",
     }, {
       "id": 2,
-      "name": "11936 Tivoli Park Row #1"
+      "label": "11936 Tivoli Park Row #1"
     }],
     "orders": [{
       "id": 944,
