@@ -24,8 +24,9 @@
     "build-combined": "node ./scripts/build-non-split.js",
     "css": "mv build/static/css/main.css order-entry.css && ns -u order-entry.css dt_backend && rm order-entry.css",
     "deploy": "npm run build-combined && mv build/static/js/main.js order-entry.js && ns -u order-entry.js dt_backend && rm order-entry.js && npm run css",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "deploy-suitelet": "ns -u backend/order-entry.suitelet.js dt_backend",
+    "deploy-restlet": "ns -u backend/order-entry.restlet.js dt_backend",
+    "deploy-all": "npm run deploy-suitelet && npm run deploy-restlet && npm run deploy"
   },
   "eslintConfig": {
     "extends": "react-app"
