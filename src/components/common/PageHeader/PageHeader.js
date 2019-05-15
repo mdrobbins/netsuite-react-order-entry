@@ -1,13 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import NavBar from 'react-bootstrap/Navbar';
 
-const PageHeader = () => {
+const PageHeader = (props) => {
   return (
     <NavBar bg="dark"
             variant="dark">
-      <NavBar.Brand href="#/">DataTek Software - Order Entry</NavBar.Brand>
+      <NavBar.Brand href="#/">{props.companyName} - Order Entry</NavBar.Brand>
     </NavBar>
   );
+};
+
+PageHeader.propTypes = {
+  companyName: PropTypes.string.isRequired
 };
 
 export default PageHeader;

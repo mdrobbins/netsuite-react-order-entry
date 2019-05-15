@@ -15,7 +15,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <div id="content">
-            <PageHeader/>
+            <PageHeader companyName={this.props.companyName}/>
             <Switch>
               <Route exact path="/" component={CustomerSearchScreen}/>
               <Route path="/customer/:id(\d+)" component={CustomerEntryScreen}/>
@@ -32,6 +32,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
+  companyName: state.companyName,
   callsInProgress: state.ajax.callsInProgress,
   loadingText: state.ajax.loadingText
 });

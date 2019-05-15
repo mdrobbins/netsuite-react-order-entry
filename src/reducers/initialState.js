@@ -1,4 +1,5 @@
 export default {
+  companyName: window.nsCompanyName || 'Company Name',
   customer: {
     activeTab: 'results',
     currentCustomer: {},
