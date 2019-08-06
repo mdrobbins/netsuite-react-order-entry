@@ -6,6 +6,8 @@ import { Row, Col, Form } from 'react-bootstrap';
 import { formatUSD } from '../../api/common';
 
 const CustomerEntryForm = (props) => {
+  const balanceClasses = props.customer.balance > 10000 ? 'error' : '';
+
   const onCompanyNameChange = e => {
     props.dispatch(actions.companyNameChanged(e.target.value));
   };
@@ -48,7 +50,7 @@ const CustomerEntryForm = (props) => {
             <Col md={{ offset: 1, span: 5 }}>
               <Form.Group controlId="balance" className="mt-3">
                 <Form.Label>Balance</Form.Label>
-                <h3>{formatUSD(props.customer.balance)}</h3>
+                <h3 className={balanceClasses}>{formatUSD(props.customer.balance)}</h3>
               </Form.Group>
             </Col>
             <Col md={{ offset: 1, span: 5 }}>

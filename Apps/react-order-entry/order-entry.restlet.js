@@ -210,6 +210,7 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
           ],
           columns: [
             'entityid',
+            search.createColumn({ name: 'companyname', sort: search.Sort.ASC }),
             'companyname',
             'email',
             'phone'

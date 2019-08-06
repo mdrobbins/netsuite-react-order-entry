@@ -6,12 +6,14 @@ import { isEmpty } from "../../../api/common";
 const OrderForm = ({ customer, order, dispatch }) => {
   const onShipToAddressChanged = e => dispatch(actions.shipToAddressChanged(e.target.value));
   const onPoNumberChanged = e => dispatch(actions.poNumberChanged(e.target.value));
+  const poClasses = order.poNumber.length === 0 ? 'error' : '';
 
   return (
     <>
       <Form.Group controlId="po-number" className="mt-1">
         <Form.Label>Customer PO#</Form.Label>
         <Form.Control value={order.poNumber}
+                      className={poClasses}
                       onChange={onPoNumberChanged}/>
       </Form.Group>
       <Form.Group controlId="shipping-address" className="mt-1">

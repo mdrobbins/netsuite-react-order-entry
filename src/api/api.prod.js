@@ -1,5 +1,5 @@
 const api = {
-  salesOrderApi: '/app/site/hosting/restlet.nl?script=66&deploy=1',
+  salesOrderApi: window.apiEndpoint,
 
   searchCustomers: function (searchText) {
     const data = { action: 'searchCustomers', searchText };
