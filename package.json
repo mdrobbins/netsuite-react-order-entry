@@ -40,5 +40,9 @@
   "devDependencies": {
     "@hitc/netsuite-types": "^2018.2.14",
     "rewire": "^7.0.0"
+  },
+  "resolutions": {
+    "nth-check": "^2.1.0",
+    "postcss": "^8.4.0"
   }
 }

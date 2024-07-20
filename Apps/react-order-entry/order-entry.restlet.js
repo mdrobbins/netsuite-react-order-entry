@@ -76,21 +76,27 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
       }
 
       function searchItems(searchText) {
+        var locationFilters = [];
+        var locationColumns = [];
+
+        if (runtime.isFeatureInEffect({ feature: 'MULTILOCINVT' })) {
+          locationFilters = ['and', ['inventorylocation', 'anyof', 1], 'and', ['locationquantityavailable', 'greaterthan', 0]];
+          locationColumns = 'locationquantityavailable';
+        }
+
         var results = search.create({
           type: 'item',
           filters: [
             ['isinactive', 'is', 'F'],
-            'and', ['inventorylocation', 'anyof', 1],
-            'and', ['locationquantityavailable', 'greaterthan', 0],
             'and', [['itemid', 'contains', searchText], 'or', ['salesdescription', 'contains', searchText]]
-          ],
+          ].concat(locationFilters),
           columns: [
             'itemid',
             'salesdescription',
             'baseprice',
-            'locationquantityavailable',
-            'imageurl'
-          ]
+            'imageurl',
+            'custitem_dt_image_url'
+          ].concat(locationColumns),
         }).run().getRange({ start: 0, end: 1000 });
 
         return (results || []).map(function (result) {
@@ -101,7 +107,7 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
             description: result.getValue('salesdescription'),
             rate: Number(result.getValue('baseprice')) || 0,
             quantityAvailable: Number(result.getValue('locationquantityavailable')) || 0,
-            imageUrl: result.getValue('imageurl')
+            imageUrl: result.getValue('custitem_dt_image_url')
           };
         });
       }
@@ -141,7 +147,8 @@ define(['N/log', 'N/search', 'N/runtime', 'N/util', 'N/record', './safeExecute',
             'tranid',
             'trandate',
             'status',
-            'amount'
+            'amount',
+            { name: 'trandate', sort: 'DESC'}
           ]
         }).run().getRange({ start: 0, end: 1000 });
 
